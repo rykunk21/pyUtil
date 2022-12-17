@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: localUtil
-Version: 0.0.1
+Version: 1.0
 Summary: A small example package
-Author-email: Example Author <author@example.com>
-Project-URL: Homepage, https://github.com/pypa/sampleproject
+Author-email: Ryan Kunkel <rykunk21@gmail.com>
+Project-URL: Homepage, https://github.com/rykunk21/pyUtil.git
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent

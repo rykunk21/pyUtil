@@ -1,9 +1,9 @@
 import os
 import time
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 import urllib.request
 
-def addInit():
+def _addInit():
     # Set the directory you want to start from
     rootDir = '.'
 
@@ -127,6 +127,7 @@ class TestHelper:
         testCase = TestCase(self.currentId, expected, actual, result)
         self.testCases.append(testCase)
 
+
 def PyPrettify(fileName):
     """
     Improves the readability of a Python file by adding blank lines between paragraphs and sentences, and by adding appropriate indentation.
@@ -163,56 +164,57 @@ def PyPrettify(fileName):
         file.writelines(newLines)
 
 
-class Node:
-    def __init__(self, fileName, fileType, dateAdded):
-        self.fileName = fileName
-        self.fileType = fileType
-        self.dateAdded = dateAdded
-        self.next = None
 
 
-class LinkedList:
-    def __init__(self):
-        self.head = None
-    def __repr__(self):
-        out = ''
-        current = self.head
-        i=0
-        while not current is None:
-            out += f'i: {i}\nName: {current.fileName}\nType: {current.fileType}\nDate: {current.dateAdded}\n'
-            current = current.next
-            i += 1
-        return out
+def scanDir(directory):
+    class Node:
+        def __init__(self, fileName, fileType, dateAdded):
+            self.fileName = fileName
+            self.fileType = fileType
+            self.dateAdded = dateAdded
+            self.next = None
 
-    def __str__(self):
-        return self.__repr__()
 
-    def addNode(self, fileName, fileType, dateAdded):
-        node = Node(fileName, fileType, dateAdded)
-        if self.head is None:
-            self.head = node
-        else:
+    class LinkedList:
+        def __init__(self):
+            self.head = None
+        def __repr__(self):
+            out = ''
             current = self.head
-            while current.next is not None:
+            i=0
+            while not current is None:
+                out += f'i: {i}\nName: {current.fileName}\nType: {current.fileType}\nDate: {current.dateAdded}\n'
                 current = current.next
-            current.next = node
+                i += 1
+            return out
 
-    def removeNode(self, fileName):
-        current = self.head
-        if current is not None and current.fileName == fileName:
-            self.head = current.next
-        else:
-            while current is not None:
-                if current.fileName == fileName:
-                    break
-                previous = current
-                current = current.next
-            if current is None:
-                return
-            previous.next = current.next
+        def __str__(self):
+            return self.__repr__()
 
+        def addNode(self, fileName, fileType, dateAdded):
+            node = Node(fileName, fileType, dateAdded)
+            if self.head is None:
+                self.head = node
+            else:
+                current = self.head
+                while current.next is not None:
+                    current = current.next
+                current.next = node
 
-def scanDirectory(directory):
+        def removeNode(self, fileName):
+            current = self.head
+            if current is not None and current.fileName == fileName:
+                self.head = current.next
+            else:
+                while current is not None:
+                    if current.fileName == fileName:
+                        break
+                    previous = current
+                    current = current.next
+                if current is None:
+                    return
+                previous.next = current.next
+
     linkedList = LinkedList()
     for fileName in os.listdir(directory):
         if ('.') in fileName:
@@ -221,23 +223,24 @@ def scanDirectory(directory):
             fileType = 'DIR'
         dateAdded = time.ctime(os.path.getctime(fileName))
         linkedList.addNode(fileName, fileType, dateAdded)
+    
     return linkedList
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
-# Create a Connection object and download the contents of the page
-conn = Connection("https://www.python.org")
+    # Create a Connection object and download the contents of the page
+    conn = Connection("https://www.python.org")
 
-# Find all elements on the page with the given class
-elements = conn.findByClass("python-list")
-print(elements)
+    # Find all elements on the page with the given class
+    elements = conn.findByClass("python-list")
+    print(elements)

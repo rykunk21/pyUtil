@@ -1,4 +1,3 @@
-
 class Docs:
   """
   Docs provides a convenient interface for accessing the methods, docstrings, and data members of a given class.
@@ -47,3 +46,5 @@ class Docs:
     The name of the constructor of the given class.
     """
     return self.cls.__name__
+
+    

@@ -1,4 +1,12 @@
-def miniMax(gameState, evalFunc):
+class Game:
+    def __init__(self):
+        pass
+    
+    def __str__(self):
+        return 'this is a game object'
+
+
+def minimax(gameState, evalFunc):
     """
     A recursive implementation of the mini-max algorithm.
     
@@ -22,7 +30,7 @@ def miniMax(gameState, evalFunc):
         newState = gameState.applyMove(move)
         
         # Recursively compute the best move in the new state.
-        score = miniMax(newState, evalFunc)
+        score = minimax(newState, evalFunc)
         
         # If the score for the current move is better than the best score so far,
         # update the best score and best move.
@@ -131,35 +139,3 @@ class ConnectFour:
             self.currentPlayer = 2
         else:
             self.currentPlayer = 1
-
-            
-def main():
-    # Create a new game of Connect Four.
-    game = ConnectFour()
-
-    # Run the game loop.
-    while True:
-        print(game)
-
-        # Prompt the current player for a column to drop their piece into.
-        col = input(f"Player {game.currentPlayer}, choose a column (0-6): ")
-        col = int(col)
-
-        # Drop the piece into the chosen column.
-        result = game.dropPiece(col)
-        if result is None:
-            print("Invalid move! Try again.")
-            continue
-
-        # Check if the current player has won the game.
-        if game.checkWin():
-            print(game)
-            print(f"Player {game.currentPlayer} wins!")
-            break
-
-        # Switch to the next player.
-        game.switchPlayer()
-
-if __name__ == '__main__':
-    main()
-
